@@ -3,13 +3,11 @@ import { product, getProduct } from '../../data/products.js';
 import formatCurrency  from '../utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import {deliveryOptions, getDeliveryOptions} from '../../data/deliveryOptions.js';
+import {deliveryOptions, getDeliveryOptions, calculateDeliveryDate} from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 
 
 export function renderOrderSummary(){
-
-
 
 
     let cartSummaryHTML = '';
@@ -21,18 +19,13 @@ export function renderOrderSummary(){
 
 
 
-
-
         const deliveryOptionID = cartItem.deliveryOptionID;
         const deliveryOption = getDeliveryOptions(deliveryOptionID);
 
+        const dateString = calculateDeliveryDate(deliveryOption);
 
-        const today = dayjs();
-        const deliveryDate = today.add(
-                deliveryOption.deliveryDays,
-                'days'
-        );
-        const dateString = deliveryDate.format('dddd, MMMM, D')
+
+
 
 
 
@@ -97,12 +90,7 @@ export function renderOrderSummary(){
     function deliveryOptionHTML(matchingProduct, cartItem) {
         let html = '';
         deliveryOptions.forEach((deliveryOption) =>{
-            const today = dayjs();
-            const deliveryDate = today.add(
-                deliveryOption.deliveryDays,
-                'days'
-            );
-            const dateString = deliveryDate.format('dddd, MMMM, D')
+            const dateString = calculateDeliveryDate(deliveryOption);
             const priceString = deliveryOption.priceCents === 0 ? 'FREE' :`$${formatCurrency(deliveryOption.priceCents)} -`;
             const isChecked = deliveryOption.id === cartItem.deliveryOptionID
 
@@ -161,6 +149,7 @@ export function renderOrderSummary(){
                 const container = document.querySelector(`.js-cart-item-container-${productId}`);
                 container.remove();
                 renderPaymentSummary();
+                renderOrderSummary();
                 updateCheckout();
 
             });
