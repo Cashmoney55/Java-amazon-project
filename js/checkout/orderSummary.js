@@ -17,10 +17,13 @@ export function renderOrderSummary(){
 
         const matchingProduct = getProduct(productId);
 
+    
 
 
-        const deliveryOptionID = cartItem.deliveryOptionID;
-        const deliveryOption = getDeliveryOptions(deliveryOptionID);
+
+
+        const deliveryOptionId = cartItem.deliveryOptionID;
+        const deliveryOption = getDeliveryOptions(deliveryOptionId);
 
         const dateString = calculateDeliveryDate(deliveryOption);
 

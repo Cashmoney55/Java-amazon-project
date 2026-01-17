@@ -105,7 +105,7 @@ describe('test suite: renderOrderSummary', () => {
       // ✅ Check cart updated
       expect(cart.length).toEqual(2);
       expect(cart[0].productId).toEqual(productId1);
-      expect(cart[0].deliveryOptionId).toEqual('3'); // not 'Id', must match actual property in your cart!
+      expect(cart[0].deliveryOptionID).toEqual('3'); // not 'Id', must match actual property in your cart!
 
       // ✅ Check payment summary shows correct values
       const shippingText = document.querySelector('.js-payment-summary-shipping').innerText;
