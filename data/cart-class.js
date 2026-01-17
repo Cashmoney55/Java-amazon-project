@@ -1,11 +1,16 @@
- function Cart(localStorageKay) {
+class Cart {
+    cartItems; // cartItems = '';
+    localStorageKey;
 
-  const cart = {
-    cartItems : undefined, // cartItems = '';
+
+    constructor (localStorageKey){
+        this.localStorageKey = localStorageKey;
+        this.LoadFromStorage();
+    }
 
 
    LoadFromStorage() {
-   this.cartItems = JSON.parse(localStorage.getItem(localStorageKay));
+   this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
 
     if (!this.cartItems) {
     this.cartItems = [{
@@ -20,15 +25,16 @@
 
         }];
     }
-  },
-    saveToStorage(){
-        localStorage.setItem(localStorageKay, JSON.stringify(this.cartItems))
+  }
 
 
-  },
+  saveToStorage(){
+        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems))
+
+  }
 
 
-     addToCart(productId, quantity = 1) {
+   addToCart(productId, quantity = 1) {
         let matchingItem;
 
         this.cartItems.forEach((cartItem) => {
@@ -51,10 +57,9 @@
         this.saveToStorage();
 
 
+    }
 
-    },
-
-      removeFromCart(productId) {
+    removeFromCart(productId) {
         const newCart = [];
 
         this.cartItems.forEach((cartItem) => {
@@ -66,11 +71,9 @@
         this.cartItems = newCart;
         this.saveToStorage();
 
-    },
+    }
 
-
-
-      updateQuantity(productId, newQuantity) {
+     updateQuantity(productId, newQuantity) {
         let matchingItem;
 
         this.cartItems.forEach((cartItem) => {
@@ -83,11 +86,10 @@
 
         this.saveToStorage();
 
-      },
+      }
 
 
-
-      updateDeliveryOption(productId, deliveryOptionID){
+        updateDeliveryOption(productId, deliveryOptionID){
         let matchingItem;
 
           this.cartItems.forEach((cartItem) => {
@@ -106,28 +108,17 @@
           this.saveToStorage();
 
 
-        }
+       }
 
-  };
-
-
-
-  return cart
- }
+}
 
 
- const cart = Cart('cart-oop');
- const businessCart = Cart('cart-business');
+ const cart = new Cart('cart-oop');
+ const businessCart = new Cart('business-cart');
 
-
-
-
-
-cart.LoadFromStorage();
-
-
-businessCart.LoadFromStorage();
 
 
 console.log(cart);
 console.log(businessCart);
+
+console.log(businessCart instanceof Cart);
