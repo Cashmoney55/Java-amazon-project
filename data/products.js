@@ -38,8 +38,32 @@ class Product {
 
   }
 
+  extraInfoHTML() {
+    return '';
+  }
+
 }
 
+
+class Clothing extends Product{ // inheritance of product class
+
+  sizeChartLink;
+
+  constructor(productDetails){
+     super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink
+  }
+
+  extraInfoHTML() {
+    return `
+    <a href="${this.sizeChartLink}" target="_Blank">
+      Size chart
+    </a>
+    `
+  }
+
+
+}
 
 
 
@@ -705,6 +729,9 @@ class Product {
     ]
   }
 ].map((productDetails) =>{
+  if (productDetails.type === 'clothing'){
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 
 });
