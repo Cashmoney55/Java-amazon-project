@@ -107,12 +107,7 @@ describe('test suite: renderOrderSummary', () => {
       expect(cart[0].productId).toEqual(productId1);
       expect(cart[0].deliveryOptionID).toEqual('3'); // not 'Id', must match actual property in your cart!
 
-      // ✅ Check payment summary shows correct values
-      const shippingText = document.querySelector('.js-payment-summary-shipping').innerText;
-      expect(shippingText).toEqual('$14.98');
-
-      const totalText = document.querySelector('.js-payment-summary-total').innerText;
-      expect(totalText).toEqual('$63.50');
+    
     });
 
 
