@@ -67,8 +67,27 @@ class Clothing extends Product{ // inheritance of product class
 }
 
 
+/*
+ const date = new Date();
+ console.log(date);
+
+ console.log(date.toLocaleTimeString());
 
 
+const  Object2={
+  a: 2,
+  b: this.a
+
+}
+
+function logThis() {
+  console.log(this);
+}
+
+
+logThis.call('hello');
+
+*/
 // converted products into class
  export const product = [
   {
