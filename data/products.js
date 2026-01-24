@@ -54,7 +54,8 @@ class Clothing extends Product{ // inheritance of product class
     this.sizeChartLink = productDetails.sizeChartLink
   }
 
-  extraInfoHTML() {
+  extraInfoHTML() { // open in new tab
+    //super.extraInfoHTML();
     return `
     <a href="${this.sizeChartLink}" target="_Blank">
       Size chart
