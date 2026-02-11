@@ -1,14 +1,14 @@
-class Cart {
+export class Cart {
     cartItems; // cartItems = '';
     #localStorageKey; // private property only accessed inside class
 
 
     constructor (localStorageKey){
-        this.localStorageKey = localStorageKey;
-        this.#LoadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.loadFromStorage();
     }
 
-   #LoadFromStorage() {
+   loadFromStorage() {
    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
     if (!this.cartItems) {
@@ -25,6 +25,7 @@ class Cart {
         }];
     }
   }
+
 
 
   saveToStorage(){
@@ -57,6 +58,7 @@ class Cart {
 
 
     }
+
 
     removeFromCart(productId) {
         const newCart = [];
@@ -112,7 +114,7 @@ class Cart {
 }
 
 
- const cart = new Cart('cart-oop');
+ export const cart = new Cart('cart-oop');
  const businessCart = new Cart('business-cart');
 
 

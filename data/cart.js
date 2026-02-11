@@ -22,6 +22,7 @@ if (!cart) {
     }
 }
 
+
 function saveToStorage(){
   localStorage.setItem('cart', JSON.stringify(cart));
 }
@@ -80,6 +81,7 @@ export function updateQuantity(productId, newQuantity) {
 
 
 
+
 export function updateDeliveryOption(productId, deliveryOptionID){
   let matchingItem;
 
@@ -89,7 +91,7 @@ export function updateDeliveryOption(productId, deliveryOptionID){
       }
      });
 
-  
+
 
       if (matchingItem) {
         matchingItem.deliveryOptionID = deliveryOptionID;

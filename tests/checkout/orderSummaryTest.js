@@ -1,7 +1,6 @@
 import { renderOrderSummary } from "../../js/checkout/orderSummary.js";
-import {LoadFromStorage, cart} from "../../data/cart.js";
+import {cart} from "../../data/cart-class.js";
 import { renderPaymentSummary } from "../../js/checkout/paymentSummary.js";
-
 
 
 
@@ -37,7 +36,7 @@ describe('test suite: renderOrderSummary', () => {
       }]);
     });
 
-      LoadFromStorage();
+     cart.loadFromStorage();
       renderOrderSummary();
     });
 
@@ -87,8 +86,8 @@ describe('test suite: renderOrderSummary', () => {
     ).not.toEqual(null);
 
 
-    expect(cart.length).toEqual(1);
-    expect(cart[0].productId).toEqual(productId2);
+    expect(cart.cartItems.length).toEqual(1);
+    expect(cart.cartItems[0].productId).toEqual(productId2);
 
 
   });
@@ -98,17 +97,28 @@ describe('test suite: renderOrderSummary', () => {
       const deliveryOptionElement = document.querySelector(`.js-delivery-option-${productId1}-3`);
       deliveryOptionElement.click();
 
-      // ✅ Check input is now selected (checked)
+      // Check input is now selected (checked)
       const input = document.querySelector(`.js-delivery-option-input-${productId1}-3`);
       expect(input.checked).toEqual(true);
 
-      // ✅ Check cart updated
-      expect(cart.length).toEqual(2);
-      expect(cart[0].productId).toEqual(productId1);
-      expect(cart[0].deliveryOptionID).toEqual('3'); // not 'Id', must match actual property in your cart!
+      // Check cart updated
+      expect(cart.cartItems.length).toEqual(2);
+      expect(cart.cartItems[0].productId).toEqual(productId1);
+      expect(cart.cartItems[0].deliveryOptionId).toEqual('3'); // not 'Id', must match actual property in your cart!
 
-    
+
     });
+
+
+
+
+
+
+
+
+
+
+
 
 
 });

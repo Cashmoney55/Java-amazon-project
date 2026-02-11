@@ -10,8 +10,6 @@ describe('test suite : addToCart', () => {
 
     it('adds an existing product to the cart', () => {
 
-
-
         spyOn(localStorage, 'getItem').and.callFake(() =>{
             return JSON.stringify([{
                 productId: '4f64a65-1377-42bc-89a5-e572d19252e2',

@@ -1,4 +1,8 @@
-import {cart, removeFromCart, updateQuantity, updateDeliveryOption} from '../../data/cart.js';
+
+
+import {cart} from '../../data/cart-class.js';
+
+
 import { product, getProduct } from '../../data/products.js';
 import formatCurrency  from '../utils/money.js';
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
@@ -12,7 +16,7 @@ export function renderOrderSummary(){
 
     let cartSummaryHTML = '';
 
-    cart.forEach((cartItem) =>{
+    cart.cartItems.forEach((cartItem) =>{
         const productId = cartItem.productId;
 
         const matchingProduct = getProduct(productId);
@@ -133,7 +137,7 @@ export function renderOrderSummary(){
         .forEach((element) =>{
             element.addEventListener('click', () =>{
                 const { productId, deliveryOptionId } = element.dataset;
-                updateDeliveryOption(productId, deliveryOptionId)
+                cart.updateDeliveryOption(productId, deliveryOptionId)
                 renderOrderSummary();
                 renderPaymentSummary();
 
@@ -151,7 +155,7 @@ export function renderOrderSummary(){
         .forEach((link) => {
             link.addEventListener('click', () =>{
                 const productId = link.dataset.productId;
-                removeFromCart(productId);
+               cart.removeFromCart(productId);
                 const container = document.querySelector(`.js-cart-item-container-${productId}`);
                 container.remove();
                 renderPaymentSummary();
@@ -205,7 +209,7 @@ export function renderOrderSummary(){
         }
 
         //update the cart
-        updateQuantity(productId, newQuantity);
+        cart.updateQuantity(productId, newQuantity);
 
         //update the html
         const quantityLabel = document.querySelector(
@@ -239,7 +243,7 @@ export function renderOrderSummary(){
             }
 
             // Update cart
-            updateQuantity(productId, newQuantity);
+            cart.updateQuantity(productId, newQuantity);
 
             // Update quantity label
             const quantityLabel = document.querySelector(`.js-quantity-label-${productId}`);
@@ -263,7 +267,7 @@ export function renderOrderSummary(){
     function updateCheckout() {
     let cartQuantity = 0;
 
-        cart.forEach((cartItem) => {
+        cart.cartItems.forEach((cartItem) => {
         cartQuantity += cartItem.quantity;
 
         });

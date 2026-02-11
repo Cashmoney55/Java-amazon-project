@@ -49,7 +49,7 @@ product.forEach((product) => {
 
             ${product.extraInfoHTML()}
 
-            
+
 
           <div class="product-spacer"></div>
 
@@ -77,7 +77,7 @@ const addedTimeouts = {};
 function updateCartQ() {
    let cartQuantity = 0;
 
-     cart.forEach((cartItem) => {
+     cart.cartItems.forEach((cartItem) => {
       cartQuantity += cartItem.quantity;
 
      });
@@ -94,7 +94,7 @@ document.querySelectorAll('.js-add-to-cart')
      const selector = document.querySelector(`.js-quantity-selector-${productId}`);
      const quantity = Number(selector.value);
 
-     addToCart(productId, quantity);
+     cart.addToCart(productId, quantity);
      updateCartQ();
 
 
