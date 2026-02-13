@@ -1,7 +1,5 @@
 
 
-Here’s a polished, internship-ready README you can paste into your repo.
-
 ⸻
 
 🛒 Amazon-Style E-Commerce Web Application
